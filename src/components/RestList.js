@@ -25,9 +25,6 @@ export default function RestList({ data }){
 
     const { price, results: restaurants  } = data;
     const title = PRICE_TO_TITLE[price];
-    console.log(price);
-    console.log(title);
-    console.log(restaurants);
 
     return (
         <View style={S.container}>

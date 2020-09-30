@@ -11,7 +11,8 @@ const S = StyleSheet.create({
         marginHorizontal: 5
     },
     image: {
-        height: 80
+        height: 80,
+        borderRadius: 5
     },
     title: {
         fontWeight: 'bold',

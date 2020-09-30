@@ -25,17 +25,21 @@ const S = StyleSheet.create({
 
 export default function Searchbar({ searchTerm, onChange, onSubmit }){
 
+    const [value, setValue] = useState(searchTerm);
+
     return (
         <View style={S.container}>
             <Feather style={S.icon} name="search" color="black"/>
             <TextInput
                 style={S.input}
                 placeholder="search restaurant..."
-                value={searchTerm}
-                autoCorrect={false}
+                value={value}
+                // autoCorrect={false}
 
-                onChangeText={onChange}
-                onEndEditing={onSubmit}
+                onChangeText={setValue}
+                onEndEditing={() => {
+                    onSubmit(value);
+                }}
             />
         </View>
     )

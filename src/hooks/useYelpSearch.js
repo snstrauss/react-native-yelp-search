@@ -3,6 +3,8 @@ import yelpApi from "../api/yelp.api";
 
 export default function useYelpSearch(searchTerm){
 
+    const [resultsTerm, setResultsTerm] = useState();
+
     const [results, setResults] = useState([]);
     const [error, setError] = useState();
 
@@ -17,12 +19,13 @@ export default function useYelpSearch(searchTerm){
     function searchYelp(searchTerm){
         yelpApi.get('/search', {
             params: {
-                searchTerm,
+                term: searchTerm,
                 limit: 50,
                 location: 'miami'
             }
         }).then((res) => {
             setResults(res.data.businesses);
+            setResultsTerm(searchTerm);
         }).catch(err => {
             setError(err.response.data.error.code);
         });
@@ -56,7 +59,7 @@ export default function useYelpSearch(searchTerm){
         }));
 
         return sorted;
-    }, [searchTerm, results.length]);
+    }, [resultsTerm]);
 
     return [sortedResults, error, hideError];
 }
